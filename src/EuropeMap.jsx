@@ -29,15 +29,14 @@ function EuropeMap() {
       return;
     }
 
-    if (currentCountryElement != null) {
+    if (currentCountryElement !== null) {
       currentCountryElement.style.fill = "silver";
     }
 
-    setCurrentCountryElement(event.target);
+    setCurrentCountryElement(eventTarget);
 
-    const isoCode = event.target.id.substring(0, 2);
+    const isoCode = eventTarget.id.substring(0, 2);
     const countryData = await fetchCountryData(isoCode);
-
     setCurrentCountryData(countryData);
   }
 
