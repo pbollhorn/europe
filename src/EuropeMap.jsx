@@ -18,17 +18,19 @@ function EuropeMap() {
   }, [currentCountryElement]); // Empty dependency array means this runs once on mount
 
   async function handleClick() {
-    if (currentCountryElement != null) {
-      currentCountryElement.style.fill = "silver";
-    }
-
     const eventTarget = event.target;
 
     if (
       eventTarget.id === "ocean" ||
-      eventTarget.id === "Large masses of water"
+      eventTarget.id === "Large masses of water" ||
+      (currentCountryElement !== null &&
+        eventTarget.id === currentCountryElement.id)
     ) {
       return;
+    }
+
+    if (currentCountryElement != null) {
+      currentCountryElement.style.fill = "silver";
     }
 
     setCurrentCountryElement(event.target);
@@ -52,7 +54,7 @@ function EuropeMap() {
         <p>Capital: {currentCountryData.capital}</p>
       </div>
       <div width="100%">
-        <EuropeSvg onClick={handleClick}/>
+        <EuropeSvg onClick={handleClick} />
       </div>
     </div>
   );
