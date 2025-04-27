@@ -40,7 +40,7 @@ function EuropeMap() {
   }
 
   return (
-    <>
+    <div width="100%">
       <div>
         <h1>
           {currentCountryData.commonName + " "}
@@ -51,10 +51,10 @@ function EuropeMap() {
         <p>Population: {currentCountryData.population}</p>
         <p>Capital: {currentCountryData.capital}</p>
       </div>
-      <div>
-        <EuropeSvg onClick={handleClick} />
+      <div width="100%">
+        <EuropeSvg onClick={handleClick}/>
       </div>
-    </>
+    </div>
   );
 }
 
