@@ -4,6 +4,7 @@ import EuropeSvg from "./EuropeSvg";
 function EuropeMap() {
   // State to store current conuntry element
   const [currentCountryElement, setCurrentCountryElement] = useState(null);
+  const [currentCountryData, setCurrentCountryData] = useState({ commonName: "Click on a country" });
 
   // useEffect
   useEffect(() => {
@@ -14,22 +15,26 @@ function EuropeMap() {
     currentCountryElement.style.fill = "red";
   }, [currentCountryElement]); // Empty dependency array means this runs once on mount
 
-  function handleClick() {
+  async function handleClick() {
     if (currentCountryElement != null) {
       currentCountryElement.style.fill = "silver";
     }
 
-    const countryIsoCode = event.target.id.substring(0, 2);
-    console.log(countryIsoCode);
-
-    fetchCountryData(countryIsoCode);
-
     setCurrentCountryElement(event.target);
+
+    const isoCode = event.target.id.substring(0, 2);
+    const countryData = await fetchCountryData(isoCode);
+
+    setCurrentCountryData(countryData);
   }
 
   return (
     <>
-      <div>hallo</div>
+      <div>
+        <h1>{currentCountryData.commonName}</h1>
+        <p>Official name: {currentCountryData.officialName}</p>
+        <p>Population: {currentCountryData.population}</p>
+      </div>
       <div>
         <EuropeSvg onClick={handleClick} />
       </div>
@@ -37,13 +42,22 @@ function EuropeMap() {
   );
 }
 
-async function fetchCountryData(countryIsoCode) {
+async function fetchCountryData(isoCode) {
   const response = await fetch(
-    "https://restcountries.com/v3.1/alpha/" + countryIsoCode
+    "https://restcountries.com/v3.1/alpha/" + isoCode
   );
   const data = await response.json();
-  console.log(data);
-  return data;
+  const countryData = {
+    commonName: data[0].name.common,
+    officialName: data[0].name.official,
+    countryCode: data[0].cca2,
+    capital: data[0].capital[0],
+    flagUrl: data[0].flags.png,
+    population: data[0].population,
+  };
+
+  console.log(countryData);
+  return countryData;
 }
 
 export default EuropeMap;
