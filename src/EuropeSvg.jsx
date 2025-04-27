@@ -4,8 +4,8 @@ function EuropeSvg(props) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width={680}
-      height={520}
+      width="100%"
+      // height={520}
       viewBox="1754 161 9938 7945"
       id="svg2"
       {...props}
