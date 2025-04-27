@@ -31,7 +31,9 @@ function EuropeMap() {
   return (
     <>
       <div>
-        <h1>{currentCountryData.commonName}</h1>
+        <h1>{currentCountryData.commonName}
+          <img height={25} src={currentCountryData.flagUrl}></img>
+        </h1>
         <p>Official name: {currentCountryData.officialName}</p>
         <p>Population: {currentCountryData.population}</p>
       </div>
