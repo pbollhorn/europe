@@ -1,27 +1,28 @@
+import React, { useState, useEffect } from "react";
 import EuropeSvg from "./EuropeSvg";
 
 function EuropeMap() {
+  // State to store current conuntry element
+  const [currentCountryElement, setCurrentCountryElement] = useState(null);
+
+  // useEffect
+  useEffect(() => {
+    if (currentCountryElement == null) {
+      return;
+    }
+
+    currentCountryElement.style.fill = "red";
+  }, [currentCountryElement]); // Empty dependency array means this runs once on mount
+
   function handleClick() {
-    alert(event.target.id);
+    if (currentCountryElement != null) {
+      currentCountryElement.style.fill = "silver";
+    }
+
+    setCurrentCountryElement(event.target);
   }
 
   return <EuropeSvg onClick={handleClick} />;
 }
 
 export default EuropeMap;
-
-// const Europe = () => {
-//   const handleClick = (e) => {
-//     const clickedId = e.target.id;
-//     if (clickedId) {
-//       console.log("Clicked country ID:", clickedId);
-//       // You can add logic here to highlight, show info, etc.
-//     }
-//   };
-
-//   return (
-//     <div onClick={handleClick}>
-//       <Europe />
-//     </div>
-//   );
-// };
