@@ -4,7 +4,9 @@ import EuropeSvg from "./EuropeSvg";
 function EuropeMap() {
   // State to store current conuntry element
   const [currentCountryElement, setCurrentCountryElement] = useState(null);
-  const [currentCountryData, setCurrentCountryData] = useState({ commonName: "Click on a country" });
+  const [currentCountryData, setCurrentCountryData] = useState({
+    commonName: "Click on a country",
+  });
 
   // useEffect
   useEffect(() => {
@@ -31,11 +33,14 @@ function EuropeMap() {
   return (
     <>
       <div>
-        <h1>{currentCountryData.commonName}
+        <h1>
+          {currentCountryData.commonName + " "}
           <img height={25} src={currentCountryData.flagUrl}></img>
         </h1>
+        <p>Country code: {currentCountryData.countryCode}</p>
         <p>Official name: {currentCountryData.officialName}</p>
         <p>Population: {currentCountryData.population}</p>
+        <p>Capital: {currentCountryData.capital}</p>
       </div>
       <div>
         <EuropeSvg onClick={handleClick} />
