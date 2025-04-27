@@ -1,6 +1,6 @@
 import * as React from "react";
 
-function EuropeSvg() {
+function EuropeSvg(props) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -8,6 +8,7 @@ function EuropeSvg() {
       height={520}
       viewBox="1754 161 9938 7945"
       id="svg2"
+      {...props}
     >
       <defs id="defs8" fill="none">
         <linearGradient id="linearGradient5669">

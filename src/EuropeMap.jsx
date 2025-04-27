@@ -1,11 +1,11 @@
 import EuropeSvg from "./EuropeSvg";
 
 function EuropeMap() {
-  return (
-    <div>
-      <EuropeSvg />
-    </div>
-  );
+  function handleClick() {
+    alert(event.target.id);
+  }
+
+  return <EuropeSvg onClick={handleClick} />;
 }
 
 export default EuropeMap;
