@@ -22,6 +22,15 @@ function EuropeMap() {
       currentCountryElement.style.fill = "silver";
     }
 
+    const eventTarget = event.target;
+
+    if (
+      eventTarget.id === "ocean" ||
+      eventTarget.id === "Large masses of water"
+    ) {
+      return;
+    }
+
     setCurrentCountryElement(event.target);
 
     const isoCode = event.target.id.substring(0, 2);
